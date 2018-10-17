@@ -40,17 +40,20 @@ class Place(object):
   
   def address_to_latlng(self, address):
     g = geocoder.google(address)
+    print g
     return (g.lat, g.lng)
 
   def query(self, address):
     lat, lng = self.address_to_latlng(address)
     
-    query_url = 'https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=5000&gscoord={0}%7C{1}&gslimit=20&format=json'.format(lat, lng)
+    query_url = 'https://en.wikipedia.org/w/api.php?action=query&prop=coordinates|pageimages|pageterms&colimit=50&piprop=thumbnail&pithumbsize=144&pilimit=50&wbptterms=description&generator=geosearch&ggscoord={0}%7C{1}&ggsradius=10000&ggslimit=50&format=json'.format(lat, lng)
     g = urllib2.urlopen(query_url)
     results = g.read()
     g.close()
 
     data = json.loads(results)
+
+    print data
     
     places = []
     for place in data['query']['geosearch']:
