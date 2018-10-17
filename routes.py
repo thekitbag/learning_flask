@@ -6,10 +6,8 @@ from forms import SignupForm, LoginForm, AddressForm
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:postgres://otnxbzqjmyiqaq:a37a67034e85e84294966ed0d122e65a0085fa404331ec67896b2a2c4b2cd0d3@ec2-54-243-61-194.compute-1.amazonaws.com:5432/deb8u5m3l38qlt'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://otnxbzqjmyiqaq:a37a67034e85e84294966ed0d122e65a0085fa404331ec67896b2a2c4b2cd0d3@ec2-54-243-61-194.compute-1.amazonaws.com:5432/deb8u5m3l38qlt'
 db.init_app(app)
-
 app.secret_key = "development-key"
 
 @app.route("/")
